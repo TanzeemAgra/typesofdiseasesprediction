@@ -46,3 +46,23 @@ def makepredictions(path):
     else:
         a="Result: Pictiuary Tumor"
     return a
+
+def index(request):
+    if request.method == "POST" and request.FILES['upload']:
+
+        if 'upload' not in request.FILES:
+            err='No images Selected'
+            return render(request,'index.html',{'err':err})
+        f = request.FILES['upload']
+        if f == '':
+            err='No files selected'
+            return render(request,'index.html',{'err':err})
+        upload =request.FILES['upload']
+        fss = FileSystemStorage() 
+        file =fss.save(upload.name,upload)
+        file_url=fss.url(file)
+        predictions=makepredictions(os.path.join(media,file))
+        return render(request,'index.html',{'pred':predictions,'file_url':file_url})
+ 
+    else:
+        return render(request,'index.html')
