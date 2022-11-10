@@ -15,3 +15,4 @@ pytest-shutil
 tensorflow
 matplotlib
 seaborn
+django
