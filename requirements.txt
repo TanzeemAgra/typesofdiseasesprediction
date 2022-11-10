@@ -12,3 +12,5 @@ scikit-learn
 dvc
 mlflow
 pytest-shutil
+tensorflow
+matplotlib
